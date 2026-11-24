@@ -43,3 +43,13 @@ def token_required(view):
         return view(*args, **kwargs)
 
     return wrapper
+
+def admin_required(view):
+    """Use below @token_required: only members whose role is Admin may continue."""
+    @functools.wraps(view)
+    def wrapper(*args, **kwargs):
+        if g.user.get("role") != "Admin":
+            return json_error(403, "Admin role required")
+        return view(*args, **kwargs)
+
+    return wrapper

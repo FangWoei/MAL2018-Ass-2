@@ -21,6 +21,34 @@ SWAGGER_TEMPLATE = {
             "description": "Type: Bearer <token>   (the token comes from POST /login)",
         }
     },
+    "definitions": {
+        "CreateProfile": {
+            "type": "object",
+            "required": ["username"],
+            "properties": {
+                "username": {"type": "string", "example": "TrailWalker2"},
+                "firstName": {"type": "string"},
+                "lastName": {"type": "string"},
+            },
+        },
+        "ProfileUpdate": {
+            "type": "object",
+            "properties": {
+                "username": {"type": "string"},
+                "email": {"type": "string", "description": "Admins only"},
+                "firstName": {"type": "string"},
+                "lastName": {"type": "string"},
+                "aboutMe": {"type": "string"},
+                "location": {"type": "string", "example": "Cardiff, UK"},
+                "heightCm": {"type": "integer", "example": 172},
+                "weightKg": {"type": "integer", "example": 65},
+                "unitPreference": {"type": "string", "enum": ["Metric", "Imperial"]},
+                "activityTimePreference": {
+                    "type": "string", "enum": ["Morning", "Afternoon", "Evening"],
+                },
+            },
+        },
+    },
 }
 
 
